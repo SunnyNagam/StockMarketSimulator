@@ -18,5 +18,12 @@ while selectedTicker not in allTickers:
 
 stock = Stock(selectedTicker)
 
+# Plot it!
 stock.plot(x_interval=100)
+
+# Plot between two dates!
+stock.plot(x_interval=100, start_date="09/28/14", end_date="11/02/15")
+
+# Plot some elements from the stock!
+stock.plot(x_interval=100, columns=["open", "high", "low", "close"])
 
