@@ -23,7 +23,8 @@ class Stock:
 
 	def plot(self, columns=["high"],
 			x_interval=None, y_interval=None,
-			start_date=None, end_date=None):
+			start_date=None, end_date=None, bot_results=None):
+
 		x = [dt.datetime.strptime(d,'%Y-%m-%d').date() for d in self.data["date"]]
 
 		if start_date and end_date:
@@ -41,6 +42,10 @@ class Stock:
 		for field in columns:
 			plt.plot(x[startInd:endInd], self.data[field][startInd:endInd], label=field) #plots the x and y
 
+		if bot_results is not None:
+			for res in bot_results:
+				plt.plot(x[startInd:endInd], res["performance"][startInd:endInd], label=res["name"])
+		# Configure chart settings
 		plt.legend()
 		plt.grid(True) #turns on axis grid
 		plt.ylim(0) #sets the y axis min to zero
